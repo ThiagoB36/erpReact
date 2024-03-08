@@ -7,7 +7,8 @@ import Produtos from "./src/screens/produtos/Produtos";
 import Menu from "./src/screens/menu/Menu";
 import Vendas from "./src/screens/vendas/Vendas";
 import Clientes from "./src/screens/clientes/Clientes";
-import Estoque from "./src/screens/estoque/Clientes";
+import Estoque from "./src/screens/estoque/Estoque";
+import Financeiro from "./src/screens/financeiro/Financeiro";
 
 export default function App() {
   const Tab = createBottomTabNavigator();
@@ -15,7 +16,10 @@ export default function App() {
   return (
     <SafeAreaView style={styles.container}>
       <NavigationContainer>
-        <Tab.Navigator>
+        <Tab.Navigator
+          initialRouteName="Login"
+          screenOptions={{ headerShown: false }}
+        >
           <Tab.Screen name="Login" component={Login} />
           <Tab.Screen name="Clientes" component={Clientes} />
           <Tab.Screen name="Estoque" component={Estoque} />
@@ -33,7 +37,5 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: "center",
-    backgroundColor: "red",
-    padding: 8,
   },
 });
