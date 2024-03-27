@@ -9,16 +9,45 @@ import Vendas from "./src/screens/vendas/Vendas";
 import Clientes from "./src/screens/clientes/Clientes";
 import Estoque from "./src/screens/estoque/Estoque";
 import Financeiro from "./src/screens/financeiro/Financeiro";
+import { color } from "./src/config/default/colorsDefault";
+import AntDesign from "react-native-vector-icons/AntDesign";
 
 export default function App() {
   const Tab = createBottomTabNavigator();
+
+  function iconNav(route, color, size) {
+    console.log({ route });
+    let iconName;
+    let result;
+
+    switch (route.name) {
+      case "Produtos":
+        iconName = "shoppingcart";
+        result = <AntDesign name={iconName} size={35} color={"red"} />;
+        break;
+    }
+    console.log({ result });
+    return result;
+  }
 
   return (
     <SafeAreaView style={styles.container}>
       <NavigationContainer>
         <Tab.Navigator
           initialRouteName="Login"
-          screenOptions={{ headerShown: false }}
+          screenOptions={({ route }) => ({
+            headerShown: false,
+            tabBarStyle: {
+              backgroundColor: color,
+              position: "absolute",
+              top: -2,
+            },
+            tabBarIcon: ({ color, size }) => {
+              const iconNavBar = iconNav(route, color, size);
+              console.log({ iconNavBar });
+              return iconNavBar;
+            },
+          })}
         >
           <Tab.Screen name="Login" component={Login} />
           <Tab.Screen name="Clientes" component={Clientes} />
